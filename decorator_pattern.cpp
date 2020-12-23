@@ -1,5 +1,4 @@
 #include <iostream>
-#include <functional>
 #include <memory>
 using namespace std;
 
