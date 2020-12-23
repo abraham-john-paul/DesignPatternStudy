@@ -11,7 +11,7 @@ class IWriter {
 
 class ConsoleWriter : public IWriter {
     public:
-    void write(std::string&& result) {
+    void write(std::string&& result) override {
         std::cout << result << "\n";
     }
 };
@@ -36,7 +36,7 @@ class FileWriter : public IWriter {
         outFilePtr = (!fileHandle) ? nullptr : FILE_unique_ptr(fileHandle);
     } 
 
-    void write(std::string&& result) {
+    void write(std::string&& result) override {
         result += "\n";
         if(outFilePtr != nullptr) {
             std::fwrite(result.c_str(), sizeof result[0], result.size(), outFilePtr.get());
