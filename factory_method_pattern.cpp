@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <type_traits>
 using namespace std;
 
 struct Product {
@@ -18,13 +19,14 @@ struct ProductB : Product {
         return "\nOperation on Product B";
     }
 };
+
 template <typename T = Product>
 struct Factory {
     virtual ~Factory() {}
     virtual unique_ptr<T> factoryMethod() const = 0;
     string someOperation() const {
         auto product = factoryMethod();
-        return product->operation();
+        return std::is_same<T, Product>::value ? product->operation() : "";
     }
 };
 
