@@ -18,10 +18,10 @@ struct ProductB : Product {
         return "\nOperation on Product B";
     }
 };
-
+template <typename T = Product>
 struct Factory {
     virtual ~Factory() {}
-    virtual unique_ptr<Product> factoryMethod() const = 0;
+    virtual unique_ptr<T> factoryMethod() const = 0;
     string someOperation() const {
         auto product = factoryMethod();
         return product->operation();
@@ -29,7 +29,7 @@ struct Factory {
 };
 
 template <typename T, typename U>
-struct ProductFactory : Factory {
+struct ProductFactory : Factory<> {
     unique_ptr<T> factoryMethod() const {
         return make_unique<U>();
     }
