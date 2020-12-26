@@ -1,2 +1,2 @@
 # DesignPatternStudy
-Understanding Object Oriented Deisgn Patterns in C++
+Understanding Object Oriented Design Patterns in C++14
